@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import styles from './TodoForm.module.css';
+import Button from '../UI/Button';
 
 export default function TodoForm({ addTodo }) {
   const [text, setText] = useState('');
   const onSubmitHandler = (evt) => {
     evt.preventDefault();
-    addTodo(text);
+    !!text.length && addTodo(text);
     setText('');
   };
   return (
@@ -16,7 +17,9 @@ export default function TodoForm({ addTodo }) {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <button type="submit">Submit</button>
+        <Button type="submit" title="Submit">
+          Submit
+        </Button>
       </form>
     </div>
   );
